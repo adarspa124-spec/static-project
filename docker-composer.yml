@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  web:
+    image: root465/static-lab:12
+    container_name: test-19
+    ports:
+      - "8080:80"
+    volumes:
+      - ./built-mount.txt:/index/built-mount.txt
+    restart: unless-stopped
