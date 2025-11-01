@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'git@github.com:adarspa124-spec/static-project.git'  // 👈 apna GitHub repo link daalna
+        git 'https://github.com/adarspa124-spec/static-project.git'  // 👈 apna GitHub repo link daalna
       }
     }
 
