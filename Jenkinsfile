@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running website on port 8085...'
-                    sh 'docker run -d -p 8085:8085 static-website:latest'
+                    sh 'docker run -d -p 8085:8085 static-website:v2'
                 }
             }
         }
