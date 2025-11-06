@@ -1,12 +1,14 @@
-# Use a lightweight Nginx base image
-FROM nginx:alpine
+# Stage 1: Use official lightweight Python image
+FROM python:3.11-slim AS base
 
-# Copy the static website files from the local directory
-# to the Nginx default web server directory inside the container
-COPY . /usr/share/nginx/html
+# Set working directory inside container
+WORKDIR /app
 
-# Expose port 80, which Nginx listens on by default
-EXPOSE 80
+# Copy all project files from repo to container
+COPY . .
 
-# Start Nginx when the container launches
-CMD ["nginx", "-g", "daemon off;"]
+# Expose port 8085 (same as Jenkins pipeline)
+EXPOSE 8085
+
+# Default command to start Python HTTP server
+CMD ["python", "-m", "http.server", "8085"]
