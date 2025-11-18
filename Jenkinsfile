@@ -11,7 +11,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                powershell """
+                sh """
                     docker build -t static-website:v3 .
                 """
             }
@@ -19,9 +19,9 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                powershell """
-                    docker stop static-web 2>\$null
-                    docker rm static-web 2>\$null
+                sh """
+                    docker stop static-web || true
+                    docker rm static-web || true
                     docker run -d --name static-web -p 9090:80 static-website:v3
                 """
             }
@@ -30,7 +30,7 @@ pipeline {
 
     post {
         success {
-            echo "Website running at: http://localhost:9090"
+            echo "Website running at: http://<your-server-ip>:9090"
         }
     }
 }
